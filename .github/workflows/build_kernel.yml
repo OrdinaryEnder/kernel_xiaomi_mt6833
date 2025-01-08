@@ -70,7 +70,7 @@ jobs:
 
         sudo apt install binutils make python3 libssl-dev build-essential bc  bison flex unzip libssl-dev ca-certificates xz-utils mkbootimg cpio device-tree-compiler git git-lfs -y
 
-        git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-6443078 clang-toolchain
+        git clone https://github.com/GrowtopiaJaw/aarch64-linux-android-4.9.git -b google --single-branch aarch64-linux-android-4.9
 
         make clean
         make mrproper
@@ -90,8 +90,11 @@ jobs:
       run: |
 
 
-        export PATH=(pwd)/clang-toolchain/bin/
+        export PATH=$PATH:$(pwd)/aarch64-linux-android-4.9/bin/
         export CC=clang
+        export CLANG_TRIPLE=aarch64-linux-gnu-
+        export CROSS_COMPILE=aarch64-linux-gnu-
+        export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
         export ARCH=arm64
         export SUBARCH=arm64
 
